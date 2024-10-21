@@ -4,10 +4,11 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/main.js"
+    "start:dev": "webpack --config webpack.config.dev.js --watch",
+    "start:prod": "webpack && node dist/bundle.js",
+    "build": "webpack"
   },
   "keywords": [],
-  "type": "module",
   "author": "",
   "license": "ISC",
   "description": "",
@@ -16,6 +17,15 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^22.7.7",
+    "@types/uuid": "^10.0.0",
+    "dotenv-webpack": "^8.1.0",
+    "nodemon": "^3.1.7",
+    "nodemon-webpack-plugin": "^4.8.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
   }
 }

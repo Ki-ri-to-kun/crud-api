@@ -1,10 +1,11 @@
-import 'dotenv/config';
+//import 'dotenv/config'; 
+
 import http from 'http';
 
-import {users} from './data.js';
-import * as UsersController from './usersController.js';
+import {users} from './data';
+import * as UsersController from './users.controller';
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req: any, res) => {
   const urlPaths = req.url.split('/');
   urlPaths.splice(0, 1);
     
@@ -22,7 +23,7 @@ const server = http.createServer((req, res) => {
    }
     
   } else if(urlPaths[0] === 'api' && urlPaths[1] === 'users' && req.method === 'POST'){
-    req.on('data', (data) => {
+    req.on('data', (data: Buffer) => {
       try{
          UsersController.createUser(data, res);
       } catch(err){
@@ -30,12 +31,12 @@ const server = http.createServer((req, res) => {
       } 
     });
     
-    req.on('error', (error) => {
+    req.on('error', (error: Error) => {
       UsersController.internalServerError(res);
     });
     
   } else if(urlPaths[0] === 'api' && urlPaths[1] === 'users' && urlPaths.length === 3 && req.method === 'PUT'){
-      req.on('data', (data) => {
+      req.on('data', (data: Buffer) => {
         try{
           UsersController.updateUser(urlPaths[2], data, res);
         } catch(err){
@@ -43,7 +44,7 @@ const server = http.createServer((req, res) => {
         }
       });
       
-     req.on('error', (error) => {
+     req.on('error', (error: Error) => {
         UsersController.internalServerError(res);
      });
 
