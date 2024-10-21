@@ -1,6 +1,5 @@
 const path = require('node:path');
 const Dotenv = require('dotenv-webpack');
-const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -29,7 +28,6 @@ module.exports = {
     }
   },
   plugins: [
-    new Dotenv(),
-    new NodemonPlugin()
+    new Dotenv()
   ]
 };
